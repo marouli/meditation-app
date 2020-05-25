@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
+
+:root {
+  --primary-color: #343951;
+  --secondary-color: #9396a5;
+  --background-color: #f5f6fb;
+  --light-green-color: #81d2a9;
+  --shadow-color: #d5d6da;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: var(--primary-color);
+  font-family: 'Varela Round', sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 360px;
+  border-bottom: 2px solid var(--secondary-color);
+  box-shadow: 2px 2px 12px var(--shadow-color);
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 250px;
+  width: 250px;
+  margin: 120px;
+  border: 3px solid var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.title-container:after {
+  content: ' ';
+  position: absolute;
+  z-index: -1;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 3px solid var(--secondary-color);
+  border-radius: 50%;
+}
+
+.title-container:hover {
+  border: 3px solid var(--light-green-color);
+  box-shadow: 4px 4px 10px var(--shadow-color);
+  transform: scale(1.1, 1.1);
+  transition: ease-out 1s;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Beth Ellen', cursive;
+  color: var(--primary-color);
+}
