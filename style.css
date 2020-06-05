@@ -103,15 +103,25 @@ h2 {
   color: var(--primary-color);
 }
 
+.main {
+  height: calc(100% - (360px));
+  /* Adding 100px of header and 150px of footer */
+}
+
+.section-container {
+  height: 100%;
+}
+
 /* breath section */
 .breath-section {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: #224941 url('./img/under-water.jpg') no-repeat center center/cover;
+  height: 100%;
+  background: var(--light-green-color) url('./img/under-water.jpg') no-repeat
+    center center/cover;
   color: #fff;
-  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -201,22 +211,58 @@ h2 {
 }
 
 /* listen section */
-.main {
-  height: calc(100% - (360px));
-  /* Adding 100px of header and 150px of footer */
-}
-.listen-container {
+.listen-section {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   height: 100%;
-  background: #224941 url('./img/clouds.jpg') no-repeat center center/cover;
+  background: var(--light-green-color) url('./img/clouds.jpg') no-repeat center
+    center/cover;
   color: #fff;
   overflow: hidden;
 }
 
+.audio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 320px;
+  background-color: var(--light-green-color);
+  opacity: 0.9;
+  border-radius: 20px;
+}
+
+.audio-player {
+  width: 290px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
 /* be section */
+.be-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  background: var(--light-green-color) url('./img/universe.jpg') no-repeat
+    center center/cover;
+  color: #fff;
+  overflow: hidden;
+}
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 320px;
+  background-color: var(--light-green-color);
+  opacity: 0.9;
+  border-radius: 20px;
+}
 
 /* media queries */
 @media (max-width: 1080px) {
@@ -224,5 +270,13 @@ h2 {
     margin: 25px;
     width: 200px;
     height: 200px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .breath-section,
+  .listen-section,
+  .be-section {
+    min-height: 70vh;
   }
 }
