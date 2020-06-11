@@ -1,0 +1,11 @@
+.timer-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 320px;
+  background-color: var(--light-green-color);
+  opacity: 0.9;
+  border-radius: 20px;
+}

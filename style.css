@@ -76,20 +76,18 @@ h2 {
 }
 
 .title-container:after {
-  content: ' ';
+  content: '';
   position: absolute;
-  z-index: -1;
   top: 5px;
   left: 5px;
   right: 5px;
   bottom: 5px;
-  border: 3px solid var(--secondary-color);
+  border: 3px solid var(--light-green-color);
   border-radius: 50%;
 }
 
 .title-container:hover {
-  border: 3px solid var(--light-green-color);
-  box-shadow: 4px 4px 10px var(--shadow-color);
+  box-shadow: 5px 5px 10px var(--shadow-color);
   transform: scale(1.1, 1.1);
   transition: ease-out 1s;
 }
@@ -108,35 +106,61 @@ h2 {
   /* Adding 100px of header and 150px of footer */
 }
 
-.section-container {
+.section {
   height: 100%;
-}
-
-/* breath section */
-.breath-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   height: 100%;
-  background: var(--light-green-color) url('./img/under-water.jpg') no-repeat
-    center center/cover;
   color: #fff;
   overflow: hidden;
+}
+
+.section-breath {
+  background: var(--light-green-color) url('/img/water.jpg') no-repeat center
+    center/cover;
+}
+
+.section-listen {
+  background: var(--light-green-color) url('/img/waterfall.jpg') no-repeat
+    center center/cover;
+}
+
+.section-be {
+  background: var(--light-green-color) url('/img/universe.jpg') no-repeat center
+    center/cover;
+}
+
+.section-background {
+  height: 100%;
+  width: 100%;
+  transition: all 2s ease-in-out;
+}
+
+.section-background:hover {
+  transform: scale(1.2);
+}
+
+/* breath section */
+.breath-container {
+  position: absolute;
 }
 
 .circle {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #010f1c;
-  width: 300px;
-  height: 300px;
+  background-color: var(--primary-color);
+  width: 290px;
+  height: 290px;
   border-radius: 50%;
   z-index: -1;
 }
 
 .gradient-circle {
+  position: absolute;
   background: conic-gradient(
     #55b7a4 0%,
     #4ca493 40%,
@@ -149,17 +173,22 @@ h2 {
   width: 320px;
   z-index: -2;
   border-radius: 50%;
-  position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -15px;
+  left: -15px;
+}
+
+@-moz-document url-prefix() {
+  .gradient-circle {
+    border: solid 2px #fff;
+  }
 }
 
 .pointer {
-  background-color: #fff;
-  border-radius: 50%;
+  display: block;
   height: 20px;
   width: 20px;
-  display: block;
+  background-color: #fff;
+  border-radius: 50%;
 }
 
 .pointer-container {
@@ -211,19 +240,8 @@ h2 {
 }
 
 /* listen section */
-.listen-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  background: var(--light-green-color) url('./img/clouds.jpg') no-repeat center
-    center/cover;
-  color: #fff;
-  overflow: hidden;
-}
-
 .audio-container {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -238,30 +256,6 @@ h2 {
   width: 290px;
   margin: 0 auto;
   border-radius: 10px;
-}
-
-/* be section */
-.be-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100%;
-  background: var(--light-green-color) url('./img/universe.jpg') no-repeat
-    center center/cover;
-  color: #fff;
-  overflow: hidden;
-}
-
-.timer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  width: 320px;
-  background-color: var(--light-green-color);
-  opacity: 0.9;
-  border-radius: 20px;
 }
 
 /* media queries */

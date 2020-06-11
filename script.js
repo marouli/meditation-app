@@ -1,19 +1,21 @@
+const main = document.getElementById('main');
 const breath_circle = document.getElementById('breath-circle');
 const listen_circle = document.getElementById('listen-circle');
-const be_circle = document.getElementById('be-circle');
-const section_container = document.getElementById('section-container');
 
 const displayBreathSection = () => {
-  section_container.innerHTML = `
-  <section class="breath-section">
-    <div id="breath-container">
-      <div class="circle">
-        <p id="text" class="breath-text"></p>
-      </div>  
-      <div class="pointer-container">
-        <span class="pointer"></span>
+  main.innerHTML = `
+  <section class="section">
+    <div class="section-background section-breath"></div>
+    <div class="breath-container">
+      <div id="breath-container">
+        <div class="circle">
+          <p id="text" class="breath-text"></p>
+        </div>  
+        <div class="pointer-container">
+          <span class="pointer"></span>
+        </div>
+        <div class="gradient-circle"></div>
       </div>
-      <div class="gradient-circle"></div>
     </div>
   </section>
   `;
@@ -45,8 +47,9 @@ const displayBreathSection = () => {
 };
 
 const displayListenSection = () => {
-  section_container.innerHTML = `
-  <section class="listen-section">
+  main.innerHTML = `
+  <section class="section">
+    <div class="section-background section-listen"></div>
     <div class="audio-container">
       <audio controls class="audio-player">
         <source src="music/ambient01.mp3" type="audio/mpeg">
@@ -57,38 +60,5 @@ const displayListenSection = () => {
   `;
 };
 
-const startTimer = (duration, display) => {
-  const timer = duration;
-  setInterval(() => {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    display.textContent = minutes + ':' + seconds;
-
-    if (timer < 0) {
-      timer = duration;
-    }
-  }, 1000);
-};
-
-const displayBeSection = () => {
-  section_container.innerHTML = `
-  <section class="be-section">
-    <div class="timer-container">
-      <p>Just be for 5 minutes</p>
-      <div id="time">05:00</div>
-    </div>
-  </section>
-  `;
-
-  const fiveMinutes = 60 * 5;
-  display = document.querySelector('#time');
-  display.addEventListener('click', startTimer(fiveMinutes, display));
-};
-
 breath_circle.addEventListener('click', displayBreathSection);
 listen_circle.addEventListener('click', displayListenSection);
-be_circle.addEventListener('click', displayBeSection);
