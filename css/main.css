@@ -136,11 +136,17 @@ h2 {
 .section-background {
   height: 100%;
   width: 100%;
-  transition: all 2s ease-in-out;
+  animation: scale 22s linear infinite;
 }
 
-.section-background:hover {
-  transform: scale(1.2);
+@keyframes scale {
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 }
 
 /* breath section */
