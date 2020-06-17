@@ -254,6 +254,7 @@ h2 {
   height: 70px;
   width: 320px;
   background-color: var(--light-green-color);
+  box-shadow: 1px 1px 10px var(--primary-color);
   opacity: 0.9;
   border-radius: 20px;
 }
