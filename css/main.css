@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Varela&display=swap');
 
 :root {
   --primary-color: #343951;
@@ -20,7 +20,7 @@ body {
   padding: 0;
   background-color: #fff;
   color: var(--primary-color);
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Varela', sans-serif;
 }
 
 ul {
@@ -35,7 +35,8 @@ ul li a {
 }
 
 h1,
-h2 {
+h2,
+p {
   margin: 0;
   padding: 0;
 }

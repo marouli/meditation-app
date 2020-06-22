@@ -1,146 +1,81 @@
 const be_circle = document.getElementById('be-circle');
-const timerForm = document.querySelector('.timer-form');
-const timerInput = document.querySelector('.timer-input');
-const timerError = document.querySelector('.timer-input-error');
-const timerButton = document.querySelector('.timer-button');
-const clockContainer = document.querySelector('.clock-container');
-const clockEl = document.querySelector('.clock');
-const clockButtons = document.querySelector('.clock-buttons');
-const playButton = document.querySelector('.play');
-const pauseButton = document.querySelector('.pause');
-const timesUpAudio = document.querySelector('.times-up-sound');
-
-let meditationTimer;
-let seconds, secondsLeft;
-
-function displayTime(seconds) {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const displaySeconds = seconds % 60;
-  clockEl.innerText = `${('0' + hours).slice(-2)}:${('0' + minutes).slice(
-    -2
-  )}:${('0' + displaySeconds).slice(-2)}`;
-}
-
-function toggleTimeForm() {
-  timerForm.style.display =
-    timerForm.style.display === 'block' ? 'none' : 'block';
-}
-
-function toggleClock() {
-  clockContainer.style.display =
-    clockContainer.style.display === 'block' ? 'none' : 'block';
-}
-
-function pause(btn) {
-  // enable play button, disable pause button
-  btn.disabled = 'true';
-  playButton.disabled = '';
-  clearInterval(meditationTimer);
-}
-
-function enablePauseButton() {
-  if (pauseButton.disabled) {
-    playButton.disabled = 'true';
-    pauseButton.disabled = '';
-  }
-}
-
-function play(btn) {
-  enablePauseButton();
-  // btn.classList.add('inactive-button');
-  // pauseButton.classList.remove('inactive-button');
-  timer(secondsLeft);
-}
-
-function stop() {
-  clearInterval(meditationTimer);
-  meditationTimer = null;
-  toggleClock();
-  toggleTimeForm();
-  // The pause button must be enabled when stopping the game
-  enablePauseButton();
-}
-
-function restart() {
-  // The pause button must be enabled upon restart.
-  enablePauseButton();
-  clearInterval(meditationTimer);
-  timer(seconds);
-}
-
-function timer(seconds) {
-  const now = Date.now();
-  const then = now + seconds * 1000;
-  if (!meditationTimer) {
-    toggleTimeForm();
-    toggleClock();
-  }
-
-  displayTime(seconds);
-  meditationTimer = setInterval(() => {
-    secondsLeft = Math.round((then - Date.now()) / 1000);
-    if (secondsLeft <= 0) {
-      timesUpAudio.play();
-      clearInterval(meditationTimer);
-      // openModal();
-    }
-    displayTime(secondsLeft);
-  }, 1000);
-}
-
-function processTimerForm(e) {
-  const timerInputValue = timerInput.value;
-
-  if (meditationTimer) {
-    clearInterval(meditationTimer);
-  }
-  seconds = timerInputValue * 60;
-  timer(seconds);
-}
 
 function displayBeSection() {
   main.innerHTML = `
   <section class="section">
     <div class="section-background section-be"></div>
     <div class="timer-container">
-      <form class="timer-form" id="timer-form">
-        <label for="time">Set your minutes</label>
-        <input type="number" class="timer-input" name="time" id="time" placeholder="20" min="1" max="999" required>
-        <button class="button timer-button">Start Meditation</button>
-      </form>
-      <div class="clock-container">
-        <div class="clock"></div>
-        <ul class="clock-buttons">
-            <li class="play"><button disabled class="clock-button" aria-label="Play"><i aria-hidden class="fas fa-play"></i></button></li>
-            <li class="pause"><button class="clock-button" aria-label="Pause"><i aria-hidden class="fas fa-pause"></i></button></li>
-            <li class="stop"><button class="clock-button" aria-label="Stop"><i aria-hidden class="fas fa-stop"></i></button></li>
-            <li class="restart"><button class="clock-button" aria-label="Restart"><i aria-hidden class="fas fa-redo"></i></button></li>
-        </ul>
+      <h1>Choose your meditation time</h1>
+      <div class="timer__controls">
+        <button data-time="600" class="timer__button">10 minutes</button>
+        <button data-time="1200" class="timer__button">20 minutes</button>
+        <button data-time="2400" class="timer__button">40 minutes</button>
+        <button data-time="3600" class="timer__button">1 hour</button>
+        <form name="customForm" id="custom">
+          <input type="text" name="minutes" placeholder="Enter other in minutes">
+        </form>
+      </div>
+      <div class="display">
+        <h2 class="display__time-left"></h2>
       </div>
     </div>
   </section>
   `;
 
-  timerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    processTimerForm(e);
-  });
+  const timerDisplay = document.querySelector('.display__time-left');
+  const buttons = document.querySelectorAll('[data-time]');
+  let countdown;
 
-  clockButtons.addEventListener('click', (e) => {
-    const button = e.target.closest('button');
-    if (!button) return;
-    if (!clockButtons.contains(button)) return;
-    if (button.disabled) return;
-    if (button.classList.contains('play')) {
-      play(button);
-    } else if (button.classList.contains('pause')) {
-      pause(button);
-    } else if (button.classList.contains('stop')) {
-      stop();
-    } else if (button.classList.contains('restart')) {
-      restart();
+  function timer(seconds) {
+    // clear any existing timers
+    clearInterval(countdown);
+
+    const now = Date.now();
+    const then = now + seconds * 1000;
+    displayTimeLeft(seconds);
+
+    countdown = setInterval(() => {
+      const secondsLeft = Math.round((then - Date.now()) / 1000);
+      // check if we should stop it so that it doesn't go to negative numbers
+      if (secondsLeft < 0) {
+        clearInterval(countdown);
+        return;
+      }
+
+      if (secondsLeft === 0) {
+        const snd = new Audio('music/tibetan-bowl.wav');
+        snd.play();
+      }
+      // display it
+      displayTimeLeft(secondsLeft);
+    }, 1000);
+  }
+
+  function displayTimeLeft(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainderSeconds = seconds % 60;
+    const display = `${minutes}:${
+      remainderSeconds < 10 ? '0' : ''
+    }${remainderSeconds}`;
+    if (seconds === 0) {
+      timerDisplay.textContent = `Namaste`;
+    } else {
+      timerDisplay.textContent = display;
     }
+  }
+
+  function startTimer() {
+    const seconds = parseInt(this.dataset.time);
+    timer(seconds);
+  }
+
+  buttons.forEach((button) => button.addEventListener('click', startTimer));
+  document.customForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const mins = this.minutes.value;
+    console.log(mins);
+    timer(mins * 60);
+    this.reset();
   });
 }
 
