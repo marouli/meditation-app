@@ -108,7 +108,6 @@ p {
 }
 
 .section {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -250,20 +249,30 @@ p {
 .audio-container {
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 270px;
   width: 320px;
-  background-color: var(--light-green-color);
+  background-color: rgba(135, 249, 180, 0.6);
   box-shadow: 1px 1px 10px var(--primary-color);
-  opacity: 0.9;
-  border-radius: 20px;
+  border-radius: 16px;
+}
+
+.audio-container p {
+  margin-bottom: 3px;
+  color: var(--primary-color);
+  font-size: 18px;
 }
 
 .audio-player {
   width: 290px;
   margin: 0 auto;
   border-radius: 10px;
+}
+
+.audio-player:not(:last-child) {
+  margin-bottom: 16px;
 }
 
 /* media queries */

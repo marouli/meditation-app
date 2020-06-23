@@ -51,8 +51,19 @@ const displayListenSection = () => {
   <section class="section">
     <div class="section-background section-listen"></div>
     <div class="audio-container">
+      <p>The Inner Sound</p>
       <audio controls class="audio-player">
-        <source src="music/ambient01.mp3" type="audio/mpeg">
+        <source src="music/the-inner-sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <p>Spirit Of Fire</p>
+      <audio controls class="audio-player">
+        <source src="music/spirit-of-fire.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <p>The Blue Pearl</p>
+      <audio controls class="audio-player">
+        <source src="music/the-blue-pearl.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
