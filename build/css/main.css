@@ -119,18 +119,18 @@ p {
 }
 
 .section-breath {
-  background: var(--light-green-color) url('/img/water.jpg') no-repeat center
+  background: var(--light-green-color) url('./img/water.jpg') no-repeat center
     center/cover;
 }
 
 .section-listen {
-  background: var(--light-green-color) url('/img/waterfall.jpg') no-repeat
+  background: var(--light-green-color) url('./img/waterfall.jpg') no-repeat
     center center/cover;
 }
 
 .section-be {
-  background: var(--light-green-color) url('/img/universe.jpg') no-repeat center
-    center/cover;
+  background: var(--light-green-color) url('./img/universe.jpg') no-repeat
+    center center/cover;
 }
 
 .section-background {
