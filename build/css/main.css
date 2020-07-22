@@ -129,8 +129,9 @@ p {
 }
 
 .section-be {
-  background: var(--light-green-color) url('../img/universe.jpg') no-repeat
-    center center/cover;
+  background: var(--light-green-color)
+    url('https://github.com/marouli/meditation-app/blob/master/build/img/universe.jpg')
+    no-repeat center center/cover;
 }
 
 .section-background {
